@@ -2,8 +2,6 @@ import y18n from 'y18n';
 
 export default class Translator {
     constructor() {
-        super();
-
         const instance = this.instance = y18n({
             updateFiles: false,
             locale: 'default',
@@ -65,7 +63,7 @@ export default class Translator {
     /**
      * Translators a plural string
      */
-    __n(singular, plural, quantity, ..leftover) {
+    __n(singular, plural, quantity, ...leftover) {
         return this.instance.__n(singular, plural, quantity, ...leftover);
     }
 }
