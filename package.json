@@ -1,6 +1,6 @@
 {
   "name": "@zakkudo/translator",
-  "version": "0.0.4",
+  "version": "0.0.5",
   "description": "Helper class to make working with translations enjoyable.",
   "keywords": [
     "translate",
@@ -13,6 +13,7 @@
   "files": [
     "build/**/*"
   ],
+  "repository": "github:zakkudo/translator",
   "license": "BSD-3-Clause",
   "devDependencies": {
     "@babel/cli": "^7.0.0-beta.56",
