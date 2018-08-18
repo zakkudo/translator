@@ -3,6 +3,9 @@
 ## Translator
 Helper class to make working with translations enjoyable.
 
+[![Build Status](https://travis-ci.org/zakkudo/translator.svg?branch=master)](https://travis-ci.org/zakkudo/translator)
+[![Coverage Status](https://coveralls.io/repos/github/zakkudo/translator/badge.svg?branch=master)](https://coveralls.io/github/zakkudo/translator?branch=master)
+
 Why use this?
 
 - Load arbitrary localizations with little fuss
