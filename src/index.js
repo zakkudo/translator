@@ -42,6 +42,7 @@ export default class Translator {
         const instance = this.instance = y18n({
             updateFiles: false,
             locale: 'default',
+            fallbackToLanguage: false,
         });
 
         instance.cache['default'] = {};
@@ -95,6 +96,13 @@ export default class Translator {
      * @return {String} The localized string if it exists, otherwise the text is passed through as a fallback
      */
     __(singular, ...leftover) {
+        const locale = this.getLocale();
+        const cache = this.instance.cache;
+        const localization = cache[locale];
+        const fallback = singular
+
+        localization[singular] = localization[singular] || fallback;
+
         return this.instance.__(singular, ...leftover);
     }
 
@@ -107,6 +115,23 @@ export default class Translator {
      * @return {String} The localized string if it exists, otherwise the text is passed through as a fallback
      */
     __n(singular, plural, quantity, ...leftover) {
+        const locale = this.getLocale();
+        const cache = this.instance.cache;
+        const localization = cache[locale];
+        const fallback = {'one': singular, 'other': plural};
+
+        if (localization[singular]) {
+            if (!localization[singular].one) {
+                localization[singular].one = singular;
+            }
+
+            if (!localization[singular].other) {
+                localization[singular].other = plural;
+            }
+        }
+
+        localization[singular] = localization[singular] || fallback;
+
         return this.instance.__n(singular, plural, quantity, ...leftover);
     }
 }
