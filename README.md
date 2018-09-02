@@ -3,8 +3,19 @@
 ## Translator
 Helper class to make working with translations enjoyable.
 
-[![Build Status](https://travis-ci.org/zakkudo/translator.svg?branch=master)](https://travis-ci.org/zakkudo/translator)
-[![Coverage Status](https://coveralls.io/repos/github/zakkudo/translator/badge.svg?branch=master)](https://coveralls.io/github/zakkudo/translator?branch=master)
+<p>
+<a href="https://travis-ci.org/zakkudo/translator">
+    <img src="https://travis-ci.org/zakkudo/translator.svg?branch=master"
+         alt="Build Status" /></a>
+<a href="https://coveralls.io/github/zakkudo/translator?branch=master">
+    <img src="https://coveralls.io/repos/github/zakkudo/translator/badge.svg?branch=master"
+         alt="Coverage Status" /></a>
+<a href="https://snyk.io/test/github/zakkudo/translator">
+    <img src="https://snyk.io/test/github/zakkudo/translator/badge.svg"
+         alt="Known Vulnerabilities"
+         data-canonical-src="https://snyk.io/test/github/zakkudo/translator"
+         style="max-width:100%;" /></a>
+</p>
 
 Why use this?
 
@@ -38,60 +49,83 @@ const translated = translator.__n('There is a duck in the pond.', 'There are %d 
 ```
 
 * [Translator](#module_Translator)
-    * [.setLocalization(locale, localization)](#module_Translator+setLocalization)
-    * [.mergeLocalization(locale, localization)](#module_Translator+mergeLocalization)
-    * [.setLocale(locale)](#module_Translator+setLocale)
-    * [.getLocale()](#module_Translator+getLocale) ⇒ <code>String</code>
-    * [.__(singular, ...leftover)](#module_Translator+__) ⇒ <code>String</code>
-    * [.__n(singular, plural, quantity, ...leftover)](#module_Translator+__n) ⇒ <code>String</code>
+    * [~Translator](#module_Translator..Translator)
+        * [new Translator()](#new_module_Translator..Translator_new)
+        * [.setLocalization(locale, localization)](#module_Translator..Translator+setLocalization)
+        * [.mergeLocalization(locale, localization)](#module_Translator..Translator+mergeLocalization)
+        * [.setLocale(locale)](#module_Translator..Translator+setLocale)
+        * [.getLocale()](#module_Translator..Translator+getLocale) ⇒ <code>String</code>
+        * [.__(singular, ...leftover)](#module_Translator..Translator+__) ⇒ <code>String</code>
+        * [.__n(singular, plural, quantity, ...leftover)](#module_Translator..Translator+__n) ⇒ <code>String</code>
 
-<a name="module_Translator+setLocalization"></a>
+<a name="module_Translator..Translator"></a>
 
-### translator.setLocalization(locale, localization)
+### Translator~Translator
+Class description
+
+**Kind**: inner class of [<code>Translator</code>](#module_Translator)  
+
+* [~Translator](#module_Translator..Translator)
+    * [new Translator()](#new_module_Translator..Translator_new)
+    * [.setLocalization(locale, localization)](#module_Translator..Translator+setLocalization)
+    * [.mergeLocalization(locale, localization)](#module_Translator..Translator+mergeLocalization)
+    * [.setLocale(locale)](#module_Translator..Translator+setLocale)
+    * [.getLocale()](#module_Translator..Translator+getLocale) ⇒ <code>String</code>
+    * [.__(singular, ...leftover)](#module_Translator..Translator+__) ⇒ <code>String</code>
+    * [.__n(singular, plural, quantity, ...leftover)](#module_Translator..Translator+__n) ⇒ <code>String</code>
+
+<a name="new_module_Translator..Translator_new"></a>
+
+#### new Translator()
+Generate an instance of the translator.
+
+<a name="module_Translator..Translator+setLocalization"></a>
+
+#### translator.setLocalization(locale, localization)
 Overwrites a specific localization with a new one.
 
-**Kind**: instance method of [<code>Translator</code>](#module_Translator)  
+**Kind**: instance method of [<code>Translator</code>](#module_Translator..Translator)  
 
 | Param | Type | Description |
 | --- | --- | --- |
 | locale | <code>String</code> | The locale to overwrite |
 | localization | <code>Object</code> | The new localization mapping |
 
-<a name="module_Translator+mergeLocalization"></a>
+<a name="module_Translator..Translator+mergeLocalization"></a>
 
-### translator.mergeLocalization(locale, localization)
+#### translator.mergeLocalization(locale, localization)
 Incrementally merges a localization into an existing one.
 
-**Kind**: instance method of [<code>Translator</code>](#module_Translator)  
+**Kind**: instance method of [<code>Translator</code>](#module_Translator..Translator)  
 
 | Param | Type | Description |
 | --- | --- | --- |
 | locale | <code>String</code> | The locale to merge into |
 | localization | <code>Object</code> | The data to merge with the existing data. |
 
-<a name="module_Translator+setLocale"></a>
+<a name="module_Translator..Translator+setLocale"></a>
 
-### translator.setLocale(locale)
+#### translator.setLocale(locale)
 Set the current locale. This will decide which localization is used.
 
-**Kind**: instance method of [<code>Translator</code>](#module_Translator)  
+**Kind**: instance method of [<code>Translator</code>](#module_Translator..Translator)  
 
 | Param | Type | Description |
 | --- | --- | --- |
 | locale | <code>String</code> | A locale such as `ja_JP`, `en`, `es` or `default` to just passthrough |
 
-<a name="module_Translator+getLocale"></a>
+<a name="module_Translator..Translator+getLocale"></a>
 
-### translator.getLocale() ⇒ <code>String</code>
-**Kind**: instance method of [<code>Translator</code>](#module_Translator)  
+#### translator.getLocale() ⇒ <code>String</code>
+**Kind**: instance method of [<code>Translator</code>](#module_Translator..Translator)  
 **Returns**: <code>String</code> - The currently set locale or 'default' if none is set  
-<a name="module_Translator+__"></a>
+<a name="module_Translator..Translator+__"></a>
 
-### translator.__(singular, ...leftover) ⇒ <code>String</code>
+#### translator.__(singular, ...leftover) ⇒ <code>String</code>
 Get the mapping for a specific string using the currently set locale.  If the mapping does
 not exist, the value is passed through.
 
-**Kind**: instance method of [<code>Translator</code>](#module_Translator)  
+**Kind**: instance method of [<code>Translator</code>](#module_Translator..Translator)  
 **Returns**: <code>String</code> - The localized string if it exists, otherwise the text is passed through as a fallback  
 
 | Param | Type | Description |
@@ -99,12 +133,12 @@ not exist, the value is passed through.
 | singular | <code>String</code> | The string to localize |
 | ...leftover | <code>Array.&lt;String&gt;</code> | Leftover arguments to use for interpolation where `%d` or `%s` is used |
 
-<a name="module_Translator+__n"></a>
+<a name="module_Translator..Translator+__n"></a>
 
-### translator.__n(singular, plural, quantity, ...leftover) ⇒ <code>String</code>
+#### translator.__n(singular, plural, quantity, ...leftover) ⇒ <code>String</code>
 Translators a plural string.
 
-**Kind**: instance method of [<code>Translator</code>](#module_Translator)  
+**Kind**: instance method of [<code>Translator</code>](#module_Translator..Translator)  
 **Returns**: <code>String</code> - The localized string if it exists, otherwise the text is passed through as a fallback  
 
 | Param | Type | Description |

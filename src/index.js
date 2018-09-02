@@ -1,10 +1,19 @@
-import y18n from 'y18n';
-
 /**
  * Helper class to make working with translations enjoyable.
  *
- * [![Build Status](https://travis-ci.org/zakkudo/translator.svg?branch=master)](https://travis-ci.org/zakkudo/translator)
- * [![Coverage Status](https://coveralls.io/repos/github/zakkudo/translator/badge.svg?branch=master)](https://coveralls.io/github/zakkudo/translator?branch=master)
+ * <p>
+ * <a href="https://travis-ci.org/zakkudo/translator">
+ *     <img src="https://travis-ci.org/zakkudo/translator.svg?branch=master"
+ *          alt="Build Status" /></a>
+ * <a href="https://coveralls.io/github/zakkudo/translator?branch=master">
+ *     <img src="https://coveralls.io/repos/github/zakkudo/translator/badge.svg?branch=master"
+ *          alt="Coverage Status" /></a>
+ * <a href="https://snyk.io/test/github/zakkudo/translator">
+ *     <img src="https://snyk.io/test/github/zakkudo/translator/badge.svg"
+ *          alt="Known Vulnerabilities"
+ *          data-canonical-src="https://snyk.io/test/github/zakkudo/translator"
+ *          style="max-width:100%;" /></a>
+ * </p>
  *
  * Why use this?
  *
@@ -37,7 +46,16 @@ import y18n from 'y18n';
  *
  * @module Translator
 */
-export default class Translator {
+
+import y18n from 'y18n';
+
+/**
+ * Class description
+ */
+class Translator {
+    /**
+     * Generate an instance of the translator.
+    */
     constructor() {
         const instance = this.instance = y18n({
             updateFiles: false,
@@ -135,3 +153,5 @@ export default class Translator {
         return this.instance.__n(singular, plural, quantity, ...leftover);
     }
 }
+
+export default Translator;
