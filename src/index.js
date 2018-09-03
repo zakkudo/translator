@@ -64,6 +64,7 @@ class Translator {
         });
 
         instance.cache['default'] = {};
+        instance.setLocale('default');
     }
     /**
      * Overwrites a specific localization with a new one.
@@ -72,7 +73,7 @@ class Translator {
      */
     setLocalization(locale, localization) {
         if (locale === 'default')  {
-            throw new Error('Cannot overwrite the fallthrough locale.')
+            throw new TypeError(`Cannot overwrite the read-only fallthrough locale, "${locale}"`)
         }
 
         this.instance.cache[locale] = Object.assign({}, localization);
@@ -85,7 +86,7 @@ class Translator {
      */
     mergeLocalization(locale, localization) {
         if (locale === 'default')  {
-            throw new Error('Cannot merge into the fallthrough locale.')
+            throw new TypeError(`Cannot merge into the read-only fallthrough locale, "${locale}"`)
         }
 
         this.instance.cache[locale] = Object.assign({}, this.instance.cache[locale], localization);
@@ -116,7 +117,7 @@ class Translator {
     __(singular, ...leftover) {
         const locale = this.getLocale();
         const cache = this.instance.cache;
-        const localization = cache[locale];
+        const localization = cache[locale] || {};
         const fallback = singular
 
         localization[singular] = localization[singular] || fallback;
@@ -135,20 +136,22 @@ class Translator {
     __n(singular, plural, quantity, ...leftover) {
         const locale = this.getLocale();
         const cache = this.instance.cache;
-        const localization = cache[locale];
+        const localization = cache[locale] || {};
+        const key = singular;
         const fallback = {'one': singular, 'other': plural};
 
-        if (localization[singular]) {
-            if (!localization[singular].one) {
-                localization[singular].one = singular;
+        if (localization[key]) {
+            if (!localization[key].one) {
+                // Allow other languages such as japanese to just use "other" in their localizations
+                localization[key].one = localization[key].other || singular;
             }
 
-            if (!localization[singular].other) {
-                localization[singular].other = plural;
+            if (!localization[key].other) {
+                localization[key].other =  plural;
             }
         }
 
-        localization[singular] = localization[singular] || fallback;
+        localization[key] = localization[key] || fallback;
 
         return this.instance.__n(singular, plural, quantity, ...leftover);
     }

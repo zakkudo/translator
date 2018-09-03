@@ -3,7 +3,8 @@ module.exports = {
         "eslint:recommended"
     ],
     "env": {
-        "jasmine": true
+        "jasmine": true,
+        "jest": true
     },
     "plugins": [
         "jasmine"
