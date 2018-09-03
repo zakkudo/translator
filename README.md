@@ -32,8 +32,9 @@ yarn add @zakkudo/translator
 Also consider `@zakkudo/translate-webpack-plugin` or
 `@zakkudo/translation-static-analyzer` for generating translation
 templates that this library reads instead of writing them manually.
-This library works very similar to `y18n` since it's a thin layer on
-top of it to make it more appropriate for the web.
+See the
+[Polymer 3 Starter Project](https://github.com/zakkudo/polymer-3-starter-project)
+for an example of using this library.
 
 **Example** *(Use the translations with a @zakkudo/translator)*  
 ```js
