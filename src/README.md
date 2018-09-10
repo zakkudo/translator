@@ -6,7 +6,7 @@ Helper class to make working with translations enjoyable.
 [![Coverage Status](https://coveralls.io/repos/github/zakkudo/translator/badge.svg?branch=master)](https://coveralls.io/github/zakkudo/translator?branch=master)
 [![Known Vulnerabilities](https://snyk.io/test/github/zakkudo/translator/badge.svg)](https://snyk.io/test/github/zakkudo/translator)
 [![Node](https://img.shields.io/node/v/@zakkudo/translator.svg)](https://nodejs.org/)
-[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
+[![License](https://img.shields.io/npm/l/@zakkudo/translator.svg)](https://opensource.org/licenses/BSD-3-Clause)
 
 ## Why use this?
 
