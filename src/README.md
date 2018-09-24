@@ -13,6 +13,8 @@ Helper class to make working with translations enjoyable.
 - Load arbitrary localizations with little fuss
 - Incrementally load localizations for use with dynamic imports
 - Keys are the translation strings itself, simplifying fallbacks and coding
+- Works similarly to the venerable [gettext](https://en.wikipedia.org/wiki/Gettext).  Any translation strategies that work for that library work for this library.
+  translatable making usage extremely easy for developers
 
 ## Install
 

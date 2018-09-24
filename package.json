@@ -3,6 +3,7 @@
     "version": "0.0.8",
     "description": "Helper class to make working with translations enjoyable.",
     "keywords": [
+        "gettext",
         "i18n",
         "internationalization",
         "l10n",
@@ -39,7 +40,7 @@
     },
     "dependencies": {
         "@babel/runtime-corejs2": "^7.0.0",
-        "y18n": "^4.0.0"
+        "printf": "^0.5.1"
     },
     "scripts": {
         "build": "scripts/build.sh",
