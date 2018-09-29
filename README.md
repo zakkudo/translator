@@ -88,15 +88,15 @@ Generate an instance of the translator.
 
 #### translator.__
 Convenience alias for [gettext](#module_@zakkudo/translator..Translator+gettext). It's
-bound to the instance, so can set it to a variable to doing
-something like `const {__} = translator;`
+bound to the instance, so it can be set to a variable by doing something like
+`const {__} = translator;`
 
 **Kind**: instance property of [<code>Translator</code>](#module_@zakkudo/translator..Translator)  
 <a name="module_@zakkudo/translator..Translator+__n"></a>
 
 #### translator.__n
 Convenience alias for [ngettext](#module_@zakkudo/translator..Translator+ngettext). It's
-bound to the instance, so can set it to a variable to doing
+bound to the instance, so it can be set to a variable to doing something like
 something like `const {__n} = translator;`
 
 **Kind**: instance property of [<code>Translator</code>](#module_@zakkudo/translator..Translator)  
@@ -104,16 +104,16 @@ something like `const {__n} = translator;`
 
 #### translator.__p
 Convenience alias for [pgettext](#module_@zakkudo/translator..Translator+pgettext). It's
-bound to the instance, so can set it to a variable to doing
-something like `const {__p} = translator;`
+bound to the instance, so it can be set to a variable to doing something like
+`const {__p} = translator;`
 
 **Kind**: instance property of [<code>Translator</code>](#module_@zakkudo/translator..Translator)  
 <a name="module_@zakkudo/translator..Translator+__np"></a>
 
 #### translator.__np
 Convenience alias for [npgettext](#module_@zakkudo/translator..Translator+npgettext). It's
-bound to the instance, so can set it to a variable to doing
-something like `const {__np} = translator;`
+bound to the instance, so it can be set to a variable to doing something like
+`const {__np} = translator;`
 
 **Kind**: instance property of [<code>Translator</code>](#module_@zakkudo/translator..Translator)  
 <a name="module_@zakkudo/translator..Translator+setLocalization"></a>

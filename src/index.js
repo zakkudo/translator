@@ -89,26 +89,26 @@ class Translator {
         this.locale = 'default';
 
         /** Convenience alias for {@link module:@zakkudo/translator~Translator#gettext}. It's
-         * bound to the instance, so can set it to a variable to doing
-         * something like `const {__} = translator;`
+         * bound to the instance, so it can be set to a variable by doing something like
+         * `const {__} = translator;`
          */
         this.__ = this.gettext.bind(this);
 
         /** Convenience alias for {@link module:@zakkudo/translator~Translator#ngettext}. It's
-         * bound to the instance, so can set it to a variable to doing
+         * bound to the instance, so it can be set to a variable to doing something like
          * something like `const {__n} = translator;`
          */
         this.__n = this.ngettext.bind(this);
 
         /** Convenience alias for {@link module:@zakkudo/translator~Translator#pgettext}. It's
-         * bound to the instance, so can set it to a variable to doing
-         * something like `const {__p} = translator;`
+         * bound to the instance, so it can be set to a variable to doing something like
+         * `const {__p} = translator;`
          */
         this.__p = this.pgettext.bind(this);
 
         /** Convenience alias for {@link module:@zakkudo/translator~Translator#npgettext}. It's
-         * bound to the instance, so can set it to a variable to doing
-         * something like `const {__np} = translator;`
+         * bound to the instance, so it can be set to a variable to doing something like
+         * `const {__np} = translator;`
          */
         this.__np = this.npgettext.bind(this);
     }
