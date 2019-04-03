@@ -3,6 +3,7 @@
 */
 
 import printf from 'printf';
+import toKey from './toKey';
 
 /**
  * @private
@@ -14,10 +15,32 @@ function isNumber(text) {
 /**
  * @private
  */
-function isContext(object) {
+function hasContext(object) {
     return Object(object) === object && Object.keys(object).some((k) => {
         return !isNumber(k);
     });
+}
+
+function calculatePluralExpression(expression, n) {
+  return eval(expression);
+}
+
+function mapQuantityToIndex(quantity) {
+  const locale = this.getLocale();
+  const localizations = this.localizations;
+  const localization = localizations[locale] || {};
+  const header = localization[''] || {};
+  const pluralForms = header['Plural-Forms'] || {};
+  const expression = pluralForms.plural || 'n != 1';
+  const index = calculatePluralExpression(expression, quantity)
+
+  if (index === true) {
+    return 1;
+  } else if (index === false) {
+    return 0;
+  }
+
+  return index;
 }
 
 /**
@@ -53,7 +76,7 @@ function decompressLocalization(localization) {
     return Object.entries(localization).reduce((accumulator, [k, v]) => {
         const context = Object.assign({}, accumulator[k] || {});
 
-        if (isContext(v)) {
+        if (hasContext(v)) {
             Object.assign(context, v);
         } else if (isSingular(v)) {
             context['default'] = v;
@@ -208,12 +231,10 @@ class Translator {
      * @return {String} The localized string if it exists, otherwise the text is passed through as a fallback
     */
     npgettext(context, singular, plural, quantity, ...leftover) {
-        const key = singular;
-        const fallback = {'1': singular, '2': plural};
-        const variations = getTranslation.call(this, context, key) || fallback;
-        const indicies = Object.keys(variations).map((k) => parseInt(k)).sort();
-        const last = indicies.slice(-1)[0];
-        const text = variations[quantity] || variations[last];
+        const key = toKey(singular, plural);
+        const variations = getTranslation.call(this, context, key) || {};
+        const index = mapQuantityToIndex.call(this, quantity);
+        const text = variations[index] || (quantity === 1 ? singular : plural);
 
         return printf(text, quantity, ...leftover);
     }

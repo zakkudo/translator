@@ -151,6 +151,7 @@ describe('Translator', () => {
 
     describe('__n', () => {
         describe('Singular', () => {
+          //add test for testing reversing variable order
             it('passes through the singular string when no locale', () => {
                 const translator = new Translator();
 
@@ -163,8 +164,8 @@ describe('Translator', () => {
                 const translator = new Translator();
 
                 translator.setLocalization('test locale', {
-                    'one test': {
-                        '1': 'one localized test'
+                    'one test:%d tests': {
+                        '0': 'one localized test'
                     }
                 });
                 translator.setLocale('test locale');
@@ -176,7 +177,7 @@ describe('Translator', () => {
                 const translator = new Translator();
 
                 translator.setLocalization('test locale', {
-                    'one test': {
+                    'one test:%d other tests': {
                         '1': 'one localized test'
                     }
                 });
@@ -191,8 +192,8 @@ describe('Translator', () => {
                 const translator = new Translator();
 
                 translator.setLocalization('test locale', {
-                    'one test': {
-                        '2': '%d localized tests'
+                    'one test:%d tests': {
+                        '0': '%d localized tests'
                     }
                 });
                 translator.setLocale('test locale');
@@ -204,7 +205,7 @@ describe('Translator', () => {
                 const translator = new Translator();
 
                 translator.setLocalization('test locale', {
-                    'one test': {
+                    'one test:%d tests': {
                     }
                 });
                 translator.setLocale('test locale');
@@ -226,9 +227,9 @@ describe('Translator', () => {
                 const translator = new Translator();
 
                 translator.setLocalization('test locale', {
-                    'one test': {
-                        '1': 'one localized test',
-                        '2': '%d localized test'
+                    'one test:%d tests': {
+                        '0': 'one localized test',
+                        '1': '%d localized test'
                     }
                 });
                 translator.setLocale('test locale');
@@ -253,16 +254,16 @@ describe('Translator', () => {
 
                 translator.setLocale('test locale');
 
-                expect(translator.__np('test context', 'one test', '%d tests', 2)).toEqual('2 tests');
+                expect(translator.__np('test context', 'one test', '%d tests', 1)).toEqual('one test');
             });
 
             it('uses translation when available for locale', () => {
                 const translator = new Translator();
 
                 translator.setLocalization('test locale', {
-                    'one test': {
+                    'one test:%d tests': {
                         'test context': {
-                            '1': 'one localized test'
+                            '0': 'one localized test'
                         }
                     }
                 });
@@ -292,9 +293,9 @@ describe('Translator', () => {
                 const translator = new Translator();
 
                 translator.setLocalization('test locale', {
-                    'one test': {
+                    'one test:%d tests': {
                         'test context': {
-                            '2': '%d localized tests'
+                            '0': '%d localized tests'
                         }
                     }
                 });
@@ -324,20 +325,80 @@ describe('Translator', () => {
                 expect(translator.__np('test context', 'one test', '%d tests', 2)).toEqual('2 tests');
             });
 
+            it('can reverse interpolation order', () => {
+                const translator = new Translator();
+
+                translator.setLocale('test locale');
+
+                expect(translator.__np('test context', '%2$s %1$d test', '%2$s %1$d tests', 2, 'reversed')).toEqual('reversed 2 tests');
+            });
+
+            it('returns the fallback plural when no matching', () => {
+                const translator = new Translator();
+
+                translator.setLocale('test locale');
+
+                expect(translator.__np('test context', 'one test', '%d tests', 2)).toEqual('2 tests');
+            });
+
             it('uses translation when available for locale', () => {
                 const translator = new Translator();
 
                 translator.setLocalization('test locale', {
-                    'one test': {
+                    'one test:%d tests': {
                         'test context': {
-                            '1': 'one localized test',
-                            '2': '%d localized test'
+                            '0': 'one localized test',
+                            '1': '%d localized test'
                         }
                     }
                 });
                 translator.setLocale('test locale');
 
                 expect(translator.__np('test context', 'one test', '%d tests', 2)).toEqual('2 localized test');
+            });
+
+            it('uses translation when available for locale and has multiple plural header', () => {
+                const translator = new Translator();
+
+              translator.setLocalization('test locale', {
+                "": {
+                  "Plural-Forms": {
+                    "nplurals": 3,
+                    "plural": "(n==1 ? 0 : n%10>=2 && n%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2)"
+                  }
+                },
+                'one test:%d tests': {
+                  'test context': {
+                    '0': 'one localized test',
+                    '1': '%d localized tests',
+                    '2': '%d localized testss'
+                  }
+                }
+              });
+              translator.setLocale('test locale');
+
+              expect(translator.__np('test context', 'one test', '%d tests', 2)).toEqual('2 localized tests');
+            });
+
+            it('uses translation when available for locale and has singlue plural header', () => {
+                const translator = new Translator();
+
+              translator.setLocalization('test locale', {
+                "": {
+                  "Plural-Forms": {
+                    "nplurals": 1,
+                    "plural": "0"
+                  }
+                },
+                'one test:%d tests': {
+                  'test context': {
+                    '0': '%d localized test',
+                  }
+                }
+              });
+              translator.setLocale('test locale');
+
+              expect(translator.__np('test context', 'one test', '%d tests', 2)).toEqual('2 localized test');
             });
         });
     });
