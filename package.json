@@ -40,7 +40,7 @@
     },
     "dependencies": {
         "@babel/runtime-corejs2": "^7.0.0",
-        "printf": "^0.5.1"
+        "printf": "^0.6.1"
     },
     "scripts": {
         "build": "scripts/build.sh",
